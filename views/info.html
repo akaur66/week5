@@ -2,10 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <title>Week 5</title>
 </head>
 <body>
-    <h1>Week 5</h1>
+    <div class="container">
+        <h1>{{@title}}</h1>
+
+        <p>You are logged in as {{@username}} with password {{@password}}</p>
+
+        <h2>Temperature</h2>
+        <p>Fahrenheit: {{@temp}}</p>
+        <p>Celsius: {{ round((@temp-32) * (5/9), 2) }}</p>
+
+        <h2>Practice</h2>
+        <p>I like color {{@color}}</p>
+        <p>Radius: {{@radius}}</p>
+        <p>Circumference: {{ 2 * 3.14 * @radius }}</p>
+
+        <h2>Fruits</h2>
+        <repeat group="{{@fruits}}" value="{{@fruit}}">
+            <p>{{@fruit}}</p>
+        </repeat>
+
+        <h2>Bookmarks</h2>
+        <repeat group="{{@bookmarks}}" value="{{@bookmark}}">
+            <p><li><a href="{{@bookmark}}">{{@bookmark}}</a></li> </p>
+        </repeat>
+
+        <h2>Desserts</h2>
+        <repeat group="{{ @desserts }}" key="{{ @val }}" value="{{ @text }}">
+            <p><input type="checkbox" value="{{ @val }}"> {{ @text }} </p>
+        </repeat>
+
+        <h2>Conditional Content</h2>
+        <check if="{{ @preferredCustomer }}">
+            <true><p>Thank you!</p></true>
+            <false><p>You're missing out</p></false>
+        </check>
+
+        <check if="{{ @lastLogin > strtotime('-1 month') }}">
+            <true><p>Welcome back!</p></true>
+            <false><p>It's been a while</p></false>
+        </check>
+    </div>
 
 </body>
 </html>
